@@ -75,18 +75,18 @@ class Pokemon {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = this.id;
-    data['num'] = this.num;
-    data['name'] = this.name;
-    data['img'] = this.img;
-    data['type'] = this.type;
-    data['height'] = this.height;
-    data['weight'] = this.weight;
-    data['candy'] = this.candy;
-    data['candy_count'] = this.candyCount;
-    data['egg'] = this.egg;
-    data['spawn_time'] = this.spawnTime;
-    data['weaknesses'] = this.weaknesses;
+    data['id'] = id;
+    data['num'] = num;
+    data['name'] = name;
+    data['img'] = img;
+    data['type'] = type;
+    data['height'] = height;
+    data['weight'] = weight;
+    data['candy'] = candy;
+    data['candy_count'] = candyCount;
+    data['egg'] = egg;
+    data['spawn_time'] = spawnTime;
+    data['weaknesses'] = weaknesses;
     if (nextEvolution != null) {
       data['next_evolution'] =
           nextEvolution!.map((v) => v.toJson()).toList();

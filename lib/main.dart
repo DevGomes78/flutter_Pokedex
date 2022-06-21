@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid/controller/covid_controller.dart';
-import 'package:flutter_covid/controller/flag_controller.dart';
 import 'package:flutter_covid/views/home_page.dart';
 import 'package:provider/provider.dart';
-
 import 'controller/poke_controller.dart';
 
 void main() {
@@ -18,10 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>CovidController()),
-        ChangeNotifierProvider(create: (context)=>FlagController()),
         ChangeNotifierProvider(create: (context)=>PokeController()),
-
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
