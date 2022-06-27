@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_covid/constants/text_constants.dart';
+
+import '../constants/String_constants.dart';
 
 class PokemonDetails extends StatefulWidget {
-
   final pokemonDetail;
   final Color color;
   final int HeroTag;
@@ -23,7 +25,7 @@ class PokemonDetails extends StatefulWidget {
     required this.type,
     required this.height,
     required this.weight,
-    required this. spawnTime,
+    required this.spawnTime,
     required this.weaknesses,
     required this.nextEvolution,
   });
@@ -49,7 +51,7 @@ class _PokemonDetailsState extends State<PokemonDetails> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 size: 35,
                 color: Colors.white,
@@ -61,7 +63,7 @@ class _PokemonDetailsState extends State<PokemonDetails> {
               left: 20,
               child: Text(
                 widget.name.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -94,7 +96,7 @@ class _PokemonDetailsState extends State<PokemonDetails> {
             top: height * 0.15,
             right: -30,
             child: Image.asset(
-              'images/pokeball.png',
+              StringConstants.imageAssets,
               width: 250,
               fit: BoxFit.fitHeight,
             ),
@@ -116,169 +118,12 @@ class _PokemonDetailsState extends State<PokemonDetails> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child:  const Text(
-                              'Name',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.3,
-                            child: Text(
-                              widget.name.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child: const Text(
-                              'Height',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.3,
-                            child: Text(
-                              widget.height.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child: const Text(
-                              'Weigth',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.3,
-                            child: Text(
-                              widget.weight.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child: const Text(
-                              'Spaw Time',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.3,
-                            child: Text(
-                              widget.spawnTime.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child: const Text(
-                              'Spaw Time',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.3,
-                            child: Text(
-                              widget.spawnTime.toString(),
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: width * 0.3,
-                            child: const Text(
-                              'weaknesses',
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.blueGrey),
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              widget.weaknesses.toString(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
+                    const SizedBox(height: 30),
+                    mounthAreaname(width),
+                    mounthAreaheinght(width),
+                    mounthAreaWheight(width),
+                    mounthAreaSpawTime(width),
+                    mountAreaWeaknesses(width),
                   ],
                 ),
               ),
@@ -291,6 +136,126 @@ class _PokemonDetailsState extends State<PokemonDetails> {
               widget.img.toString(),
               height: 200,
               fit: BoxFit.fitHeight,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding mountAreaWeaknesses(double width) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: width * 0.3,
+            child: Text(
+              StringConstants.weaknesses,
+              style: AppTextStyle.font18BoldBlack,
+            ),
+          ),
+          Container(
+            child: Text(
+              widget.weaknesses.toString(),
+              style: AppTextStyle.font18W700Bluegray,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding mounthAreaSpawTime(double width) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: width * 0.3,
+            child: Text(
+              StringConstants.SpawTime,
+              style: AppTextStyle.font18BoldBlack,
+            ),
+          ),
+          Container(
+            width: width * 0.3,
+            child: Text(
+              widget.spawnTime.toString(),
+              style: AppTextStyle.font18W700Bluegray,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding mounthAreaWheight(double width) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: width * 0.3,
+            child: Text(
+              StringConstants.Weigth,
+              style: AppTextStyle.font18BoldBlack,
+            ),
+          ),
+          Container(
+            width: width * 0.3,
+            child: Text(
+              widget.weight.toString(),
+              style: AppTextStyle.font18W700Bluegray,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding mounthAreaheinght(double width) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: width * 0.3,
+            child: Text(StringConstants.Height,
+                style: AppTextStyle.font18BoldBlack),
+          ),
+          Container(
+            width: width * 0.3,
+            child: Text(widget.height.toString(),
+                style: AppTextStyle.font18W700Bluegray),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding mounthAreaname(double width) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: width * 0.3,
+            child: Text(
+              StringConstants.Name,
+              style: AppTextStyle.font18BoldBlack,
+            ),
+          ),
+          Container(
+            width: width * 0.3,
+            child: Text(
+              widget.name.toString(),
+              style: AppTextStyle.font18W700Bluegray,
             ),
           ),
         ],

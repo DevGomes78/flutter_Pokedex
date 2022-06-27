@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid/views/pokemon_detail_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/String_constants.dart';
 import '../controller/poke_controller.dart';
 
 class PokeList extends StatefulWidget {
@@ -38,7 +39,7 @@ class _PokeListState extends State<PokeList> {
               fit: BoxFit.fitWidth,
             ),
           ),
-          Positioned(
+          const Positioned(
               top: 80,
               left: 20,
               child: Text(
@@ -91,90 +92,11 @@ class _PokeListState extends State<PokeList> {
                                   spawnTime:  provider.list[index].spawnTime,
                                   weaknesses: provider.list[index].weaknesses,
                                   nextEvolution: provider.list[index].nextEvolution,
-                            )));
+                            ),
+                            ),
+                        );
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 8,
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: type == 'Grass'?
-                            Colors.greenAccent: type== 'Fire'?
-                            Colors.redAccent: type=='Water'?
-                            Colors.blueAccent: type=='Electric'?
-                            Colors.yellow: type=='Rock'?
-                            Colors.grey: type=='Ground'?
-                            Colors.brown: type== 'Psychic'?
-                            Colors.indigo: type=='Fighting'?
-                            Colors.orange: type=='Bug'?
-                            Colors.lightGreenAccent:type=='Ghost'?
-                            Colors.deepPurple  : type=='Normal'?
-                            Colors.black26 :type=='Poison'?
-                            Colors.deepPurpleAccent: Colors.pink,
-
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                bottom: -10,
-                                right: -10,
-                                child: Image.asset(
-                                  'images/pokeball.png',
-                                  height: 120,
-                                  fit: BoxFit.fitHeight,
-                                ),
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                child: Text(
-                                  provider.list[index].name.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                top: 55,
-                                left: 20,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.black26,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, right: 8.0, top: 4, bottom: 4),
-                                    child: Text(
-                                      provider.list[index].type![0].toString(),
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 5,
-                                right: -5,
-                                child: Hero(
-                                  tag: provider.list[index],
-                                  child: Image.network(
-                                    provider.list[index].img.toString(),
-                                    height: 110,
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      child: mounthAreaPokemonColor(type, provider, index),
                     );
                   },
                 ),
@@ -184,5 +106,89 @@ class _PokeListState extends State<PokeList> {
         ],
       ),
     );
+  }
+
+   mounthAreaPokemonColor(String type, PokeController provider, int index) {
+    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 8,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: type == 'Grass'?
+                          Colors.greenAccent: type== 'Fire'?
+                          Colors.redAccent: type=='Water'?
+                          Colors.blueAccent: type=='Electric'?
+                          Colors.yellow: type=='Rock'?
+                          Colors.grey: type=='Ground'?
+                          Colors.brown: type== 'Psychic'?
+                          Colors.indigo: type=='Fighting'?
+                          Colors.orange: type=='Bug'?
+                          Colors.lightGreenAccent:type=='Ghost'?
+                          Colors.deepPurple  : type=='Normal'?
+                          Colors.black26 :type=='Poison'?
+                          Colors.deepPurpleAccent: Colors.pink,
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: -10,
+                              right: -10,
+                              child: Image.asset(
+                                StringConstants.imageAssets,
+                                height: 120,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                            Positioned(
+                              top: 20,
+                              left: 20,
+                              child: Text(
+                                provider.list[index].name.toString(),
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 55,
+                              left: 20,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.black26,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, right: 8.0, top: 4, bottom: 4),
+                                  child: Text(
+                                    provider.list[index].type![0].toString(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 5,
+                              right: -5,
+                              child: Hero(
+                                tag: provider.list[index],
+                                child: Image.network(
+                                  provider.list[index].img.toString(),
+                                  height: 110,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
   }
 }
