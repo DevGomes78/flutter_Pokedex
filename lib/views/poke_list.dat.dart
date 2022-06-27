@@ -25,7 +25,6 @@ class _PokeListState extends State<PokeList> {
   Widget build(BuildContext context) {
     PokeController provider = Provider.of<PokeController>(context);
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -86,6 +85,12 @@ class _PokeListState extends State<PokeList> {
                                   HeroTag: index,
                                   name:  provider.list[index].name,
                                   img: provider.list[index].img,
+                                  type: provider.list[index].type,
+                                  height: provider.list[index].height,
+                                  weight: provider.list[index].weight,
+                                  spawnTime:  provider.list[index].spawnTime,
+                                  weaknesses: provider.list[index].weaknesses,
+                                  nextEvolution: provider.list[index].nextEvolution,
                             )));
                       },
                       child: Padding(
@@ -157,10 +162,13 @@ class _PokeListState extends State<PokeList> {
                               Positioned(
                                 bottom: 5,
                                 right: -5,
-                                child: Image.network(
-                                  provider.list[index].img.toString(),
-                                  height: 110,
-                                  fit: BoxFit.fitHeight,
+                                child: Hero(
+                                  tag: provider.list[index],
+                                  child: Image.network(
+                                    provider.list[index].img.toString(),
+                                    height: 110,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                                 ),
                               ),
                             ],
