@@ -28,34 +28,33 @@ class _PokeListState extends State<PokeList> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body:FutureBuilder<List<Pokemon>>(
-        future: controller.getData(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-              return SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            default:
-              if (snapshot.hasError) {
-                return  const Center(
-                  child: Text(ErrorConstants.pageError),
+      body: FutureBuilder<List<Pokemon>>(
+          future: controller.getData(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
-              } else {
-                return  buildStack(width);
-              }
-          }
-        }),
-
+              default:
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text(ErrorConstants.pageError),
+                  );
+                } else {
+                  return _bodyPage(width);
+                }
+            }
+          }),
     );
   }
 
-  Stack buildStack(double width) {
+  _bodyPage(double width) {
     return Stack(
       children: [
         Positioned(
@@ -82,80 +81,81 @@ class _PokeListState extends State<PokeList> {
           bottom: 0,
           width: width,
           child: Column(children: [
-            Expanded(
-              child: GridView.builder(
-                itemCount: controller.list.length,
-                gridDelegate: const
-                SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5,
-                  childAspectRatio: 1.4,
-                ),
-                itemBuilder: (context, index) {
-                  var type = controller.list[index].type![0];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PokemonDetails(
-                            pokemonDetail: controller.list[index],
-                            color: type == 'Grass'
-                                ? Colors.greenAccent
-                                : type == 'Fire'
-                                    ? Colors.redAccent
-                                    : type == 'Water'
-                                        ? Colors.blueAccent
-                                        : type == 'Electric'
-                                            ? Colors.yellow
-                                            : type == 'Rock'
-                                                ? Colors.grey
-                                                : type == 'Ground'
-                                                    ? Colors.brown
-                                                    : type == 'Psychic'
-                                                        ? Colors.indigo
-                                                        : type == 'Fighting'
-                                                            ? Colors.orange
-                                                            : type == 'Bug'
-                                                                ? Colors
-                                                                    .lightGreenAccent
-                                                                : type ==
-                                                                        'Ghost'
-                                                                    ? Colors
-                                                                        .deepPurple
-                                                                    : type ==
-                                                                            'Normal'
-                                                                        ? Colors
-                                                                            .black26
-                                                                        : type == 'Poison'
-                                                                            ? Colors.deepPurpleAccent
-                                                                            : Colors.pink,
-                            HeroTag: index,
-                            name: controller.list[index].name,
-                            img: controller.list[index].img,
-                            type: controller.list[index].type,
-                            height: controller.list[index].height,
-                            weight: controller.list[index].weight,
-                            spawnTime: controller.list[index].spawnTime,
-                            weaknesses: controller.list[index].weaknesses,
-                            nextEvolution:
-                                controller.list[index].nextEvolution,
-                          ),
-                        ),
-                      );
-                    },
-                    child: mounthAreaPokemonColor(type, controller, index),
-                  );
-                },
-              ),
-            ),
+            _pokeGrid(),
           ]),
         ),
       ],
     );
   }
 
-  mounthAreaPokemonColor(String type, PokeController provider, int index) {
+  _pokeGrid() {
+    return Expanded(
+      child: GridView.builder(
+        itemCount: controller.list.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 5,
+          childAspectRatio: 1.4,
+        ),
+        itemBuilder: (context, index) {
+          var type = controller.list[index].type![0];
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PokemonDetails(
+                    pokemonDetail: controller.list[index],
+                    color: type == 'Grass'
+                        ? Colors.greenAccent
+                        : type == 'Fire'
+                            ? Colors.redAccent
+                            : type == 'Water'
+                                ? Colors.blueAccent
+                                : type == 'Electric'
+                                    ? Colors.yellow
+                                    : type == 'Rock'
+                                        ? Colors.grey
+                                        : type == 'Ground'
+                                            ? Colors.brown
+                                            : type == 'Psychic'
+                                                ? Colors.indigo
+                                                : type == 'Fighting'
+                                                    ? Colors.orange
+                                                    : type == 'Bug'
+                                                        ? Colors
+                                                            .lightGreenAccent
+                                                        : type == 'Ghost'
+                                                            ? Colors.deepPurple
+                                                            : type == 'Normal'
+                                                                ? Colors.black26
+                                                                : type ==
+                                                                        'Poison'
+                                                                    ? Colors
+                                                                        .deepPurpleAccent
+                                                                    : Colors
+                                                                        .pink,
+                    HeroTag: index,
+                    name: controller.list[index].name,
+                    img: controller.list[index].img,
+                    type: controller.list[index].type,
+                    height: controller.list[index].height,
+                    weight: controller.list[index].weight,
+                    spawnTime: controller.list[index].spawnTime,
+                    weaknesses: controller.list[index].weaknesses,
+                    nextEvolution: controller.list[index].nextEvolution,
+                  ),
+                ),
+              );
+            },
+            child: _pokemonColor(type, controller, index),
+          );
+        },
+      ),
+    );
+  }
+
+  _pokemonColor(String type, PokeController provider, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
