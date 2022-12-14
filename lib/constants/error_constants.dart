@@ -1,3 +1,3 @@
 class Errorconstants{
-  static const ApiError = 'Erro ao acessar os dados';
+  static const pageError = 'Erro ao acessar a página';
 }
