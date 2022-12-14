@@ -19,7 +19,7 @@ class PokeController extends ChangeNotifier {
         return list;
       }
     } catch (e) {
-      print('${Errorconstants.pageError} $e');
+      print('${ErrorConstants.pageError} $e');
       return [];
     }
     return [];
