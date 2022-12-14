@@ -155,7 +155,7 @@ class _PokeListState extends State<PokeList> {
     );
   }
 
-  _pokemonColor(String type, PokeController provider, int index) {
+  _pokemonColor(String type, PokeController controller, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -206,7 +206,7 @@ class _PokeListState extends State<PokeList> {
               top: 20,
               left: 20,
               child: Text(
-                provider.list[index].name.toString(),
+                controller.list[index].name.toString(),
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -226,7 +226,7 @@ class _PokeListState extends State<PokeList> {
                   padding: const EdgeInsets.only(
                       left: 8.0, right: 8.0, top: 4, bottom: 4),
                   child: Text(
-                    provider.list[index].type![0].toString(),
+                    controller.list[index].type![0].toString(),
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -238,9 +238,9 @@ class _PokeListState extends State<PokeList> {
               bottom: 5,
               right: -5,
               child: Hero(
-                tag: provider.list[index],
+                tag: controller.list[index],
                 child: Image.network(
-                  provider.list[index].img.toString(),
+                  controller.list[index].img.toString(),
                   height: 110,
                   fit: BoxFit.fitHeight,
                 ),
