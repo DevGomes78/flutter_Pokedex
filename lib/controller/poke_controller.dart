@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../constants/error_constants.dart';
 import '../constants/url_constants.dart';
 import '../models/poke_models.dart';
 
@@ -18,7 +19,7 @@ class PokeController extends ChangeNotifier {
         return list;
       }
     } catch (e) {
-      print('Erro ao acessar a Pagina: $e');
+      print('${Errorconstants.pageError} $e');
       return [];
     }
     return [];
