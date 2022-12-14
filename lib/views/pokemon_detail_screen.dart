@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_covid/constants/text_constants.dart';
+import 'package:flutter_covid/components/text.dart';
 
 import '../constants/String_constants.dart';
 
