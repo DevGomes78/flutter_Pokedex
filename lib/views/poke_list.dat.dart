@@ -55,6 +55,10 @@ class _PokeListState extends State<PokeList> {
   }
 
   _bodyPage(double width) {
+    return _topPage(width);
+  }
+
+  _topPage(double width) {
     return Stack(
       children: [
         Positioned(
@@ -155,7 +159,7 @@ class _PokeListState extends State<PokeList> {
     );
   }
 
-  _pokemonColor(String type, PokeController controller, int index) {
+  _pokemonColor(String type, controller, int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
