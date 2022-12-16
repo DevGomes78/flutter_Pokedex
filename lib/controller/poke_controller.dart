@@ -14,7 +14,8 @@ class PokeController extends ChangeNotifier {
       final response = await http.get(baseUrl);
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        result['pokemon'].forEach((item) => list.add(Pokemon.fromJson(item)));
+        result['pokemon'].forEach((item) =>
+            list.add(Pokemon.fromJson(item)));
         notifyListeners();
         return list;
       }
