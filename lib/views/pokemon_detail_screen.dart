@@ -156,11 +156,9 @@ class _PokemonDetailsState extends State<PokemonDetails> {
               style: AppTextStyle.font18BoldBlack,
             ),
           ),
-          Container(
-            child: Text(
-              widget.weaknesses.toString(),
-              style: AppTextStyle.font18W700Bluegray,
-            ),
+          Text(
+            widget.weaknesses.toString(),
+            style: AppTextStyle.font18W700Bluegray,
           ),
         ],
       ),
@@ -173,14 +171,14 @@ class _PokemonDetailsState extends State<PokemonDetails> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: width * 0.3,
             child: Text(
               StringConstants.SpawTime,
               style: AppTextStyle.font18BoldBlack,
             ),
           ),
-          Container(
+          SizedBox(
             width: width * 0.3,
             child: Text(
               widget.spawnTime.toString(),
